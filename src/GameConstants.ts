@@ -11,5 +11,10 @@ export default class GameConstants {
         GAME_OVER: "GameOverScene",
     } as const);
 
-    public static readonly MAX_SCORE_DIGITS: number = 6;
+    public static readonly MAX_SCORE_DIGITS: number = 3;
+
+    public static formatScore(score: number): string {
+        const safeScore = Number.isFinite(score) ? Math.min(Math.max(Math.trunc(score), 0), 999) : 0;
+        return safeScore.toString().padStart(GameConstants.MAX_SCORE_DIGITS, "0");
+    }
 }

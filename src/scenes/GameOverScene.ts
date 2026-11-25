@@ -16,8 +16,9 @@ export default class GameOverScene extends Phaser.Scene {
         this.add.text(screenCenterX, titleY + 160, "SCORE",
             {fontSize: '48px', align: 'center'}).setOrigin(0.5);
 
-        this.add.text(screenCenterX, titleY + 220, this.registry.get(RegistryConstants.Keys.PLAYER_SCORE).toString(),
-            {fontSize: '32px', color: '#fff', align: 'center'}).setOrigin(0.5);
+        this.add.text(screenCenterX, titleY + 220,
+            GameConstants.formatScore(Number(this.registry.get(RegistryConstants.Keys.PLAYER_SCORE))),
+            {fontSize: '64px', color: '#fff', align: 'center'}).setOrigin(0.5);
 
         this.add.text(screenCenterX, this.scale.height - 256, 'Press SPACE to play again',
             {fontSize: '32px', color: '#fff', align: 'center'}).setOrigin(0.5);

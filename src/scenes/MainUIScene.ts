@@ -30,10 +30,9 @@ export default class MainUIScene extends Scene {
         const playerHealthTextX = playerHealthIcon.x + playerHealthIcon.displayWidth + 16;
         this._playerHealthText = this.add.bitmapText(playerHealthTextX, 64, "future-bmp", "x0", 128);
 
-        let scoreStr: string = "".padStart(GameConstants.MAX_SCORE_DIGITS, "0");
+        let scoreStr: string = GameConstants.formatScore(0);
         if (this.registry.has(RegistryConstants.Keys.PLAYER_SCORE))
-            scoreStr = this.registry.get(RegistryConstants.Keys.PLAYER_SCORE).toString()
-                .padStart(GameConstants.MAX_SCORE_DIGITS, "0");
+            scoreStr = GameConstants.formatScore(Number(this.registry.get(RegistryConstants.Keys.PLAYER_SCORE)));
         this._scoreText = this.add.bitmapText(this.scale.width - 64, 64, "future-bmp", scoreStr, 128)
             .setOrigin(1, 0);
 
@@ -43,7 +42,7 @@ export default class MainUIScene extends Scene {
     }
 
     private onPlayerScoreChanged(_: any, value: number) {
-        const scoreStr: string = value.toString().padStart(GameConstants.MAX_SCORE_DIGITS, "0");
+        const scoreStr: string = GameConstants.formatScore(value);
         this._scoreText.setText(scoreStr);
     }
 
